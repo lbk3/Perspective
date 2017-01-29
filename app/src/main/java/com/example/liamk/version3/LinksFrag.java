@@ -1,16 +1,11 @@
 package com.example.liamk.version3;
-import android.content.Intent;
-import android.net.Uri;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
 
 /**
  * Created by liamk on 22/01/2017.
@@ -20,14 +15,16 @@ public class LinksFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.linksfrag, container, false);
 
-        String[] menuItems = {"MoodGym", "BetterHelp", "turn2me", "7cups", "NHS", "MoodGym", "BetterHelp", "turn2me", "7cups", "NHS"};
-        ListView listView = (ListView) view.findViewById(R.id.linksList);
-        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
-                getActivity(), android.R.layout.simple_expandable_list_item_1,
-                menuItems);
-        listView.setAdapter(listViewAdapter);
+        RecyclerView rv = (RecyclerView) view.findViewById(R.id.linkRecycle);
+        rv.setHasFixedSize(true);
+        MyLinkAdapter adapter = new MyLinkAdapter(new String[]{"MoodGym", "BetterHelp", "turn2me", "7cups", "NHS"});
+        rv.setAdapter(adapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        rv.setLayoutManager(llm);
+
+
+        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) {
@@ -62,7 +59,7 @@ public class LinksFrag extends Fragment {
                     startActivity(i);
                 }
             }
-        });
+        });*/
 
         // Inflate the layout for this fragment
         return view;

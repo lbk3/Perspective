@@ -18,7 +18,7 @@ public class TechFrag extends Fragment{
 
        RecyclerView rv = (RecyclerView) view.findViewById(R.id.techRecycle);
         rv.setHasFixedSize(true);
-        MyAdapter adapter = new MyAdapter(new String[]{"Take a time out", "Countdown", "Meditation", "Positive Reinforcement", "4-7-8 Breathing" , "Breath Regulation" , "Aerobic Exercise", "Open Up"});
+        MyLinkAdapter adapter = new MyLinkAdapter(new String[]{"Take a time out", "Countdown", "Meditation", "Positive Reinforcement", "4-7-8 Breathing" , "Breath Regulation" , "Aerobic Exercise", "Open Up"});
         rv.setAdapter(adapter);
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());

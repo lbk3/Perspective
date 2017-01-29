@@ -1,4 +1,5 @@
 package com.example.liamk.version3;
+
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,7 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+/**
+ * Created by liamk on 29/01/2017.
+ */
+public class MyLinkAdapter extends RecyclerView.Adapter<MyLinkAdapter.MyViewHolder> {
     private String[] mDataset;
 
     // Provide a reference to the views for each data item
@@ -24,13 +28,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MyAdapter(String[] myDataset) {
+    public MyLinkAdapter(String[] myDataset) {
         mDataset = myDataset;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public MyAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
+    public MyLinkAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
                                                          int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
