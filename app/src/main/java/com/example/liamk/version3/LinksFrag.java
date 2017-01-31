@@ -22,45 +22,6 @@ public class LinksFrag extends Fragment {
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         rv.setLayoutManager(llm);
-
-
-        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0) {
-                    Snackbar.make(view, "Opening MoodGym", Snackbar.LENGTH_LONG).show();
-                    String url = "https://moodgym.anu.edu.au/welcome";
-                    Intent i = new Intent(Intent.ACTION_VIEW);
-                    i.setData(Uri.parse(url));
-                    startActivity(i);
-                } else if (position == 1) {
-                    Snackbar.make(view, "Opening BetterHelp", Snackbar.LENGTH_LONG).show();
-                    String url = "https://www.betterhelp.com/";
-                    Intent i = new Intent(Intent.ACTION_VIEW);
-                    i.setData(Uri.parse(url));
-                    startActivity(i);
-                } else if (position == 2) {
-                    Snackbar.make(view, "Opening Turn2Me", Snackbar.LENGTH_LONG).show();
-                    String url = "https://turn2me.org/";
-                    Intent i = new Intent(Intent.ACTION_VIEW);
-                    i.setData(Uri.parse(url));
-                    startActivity(i);
-                } else if (position == 3) {
-                    Snackbar.make(view, "Opening 7Cups", Snackbar.LENGTH_LONG).show();
-                    String url = "https://www.7cups.com/";
-                    Intent i = new Intent(Intent.ACTION_VIEW);
-                    i.setData(Uri.parse(url));
-                    startActivity(i);
-                } else if (position == 4) {
-                    Snackbar.make(view, "Opening NHS", Snackbar.LENGTH_LONG).show();
-                    String url = "http://www.nhs.uk/conditions/stress-anxiety-depression/pages/depression-help-groups.aspx";
-                    Intent i = new Intent(Intent.ACTION_VIEW);
-                    i.setData(Uri.parse(url));
-                    startActivity(i);
-                }
-            }
-        });*/
-
         // Inflate the layout for this fragment
         return view;
     }
