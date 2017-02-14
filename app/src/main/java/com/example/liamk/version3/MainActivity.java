@@ -2,10 +2,7 @@ package com.example.liamk.version3;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.app.Activity;
-import android.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,22 +10,20 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    TabLayout tabLayout;
-    ViewPager viewPager;
-    FragmentTransaction fragTrans;
-    RelativeLayout relLayout;
-    RelativeLayout animLayout;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private FragmentTransaction fragTrans;
+    private RelativeLayout relLayout;
+    private RelativeLayout animLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private class CustomerAdapter extends FragmentPagerAdapter {
-        private String fragments [] = {"Events", "Links", "Techniques", "Settings",};
+        private String fragments [] = {"Events", "Techniques", "Links", "Blog",};
         public CustomerAdapter(FragmentManager supportFragmentManager, Context applicationContext) {
             super(supportFragmentManager);
         }
@@ -156,11 +151,11 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
                     return new EventsFrag();
                 case 1:
-                    return new LinksFrag();
-                case 2:
                     return new TechFrag();
+                case 2:
+                    return new LinksFrag();
                 case 3:
-                    return new SettingsFrag();
+                    return new BlogFrag();
                 default:
                     return null;
             }
