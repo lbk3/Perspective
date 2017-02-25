@@ -37,8 +37,8 @@ public class MyLinkAdapter extends RecyclerView.Adapter<MyLinkAdapter.MyViewHold
 
     // Create new views (invoked by the layout manager)
     @Override
-    public MyLinkAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
-                                                         int viewType) {
+    public MyViewHolder onCreateViewHolder(ViewGroup parent,
+                                           int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.cardmodel, parent, false);

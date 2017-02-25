@@ -22,7 +22,7 @@ import com.google.firebase.storage.UploadTask;
 
 public class BlogPostActivity extends AppCompatActivity {
 
-    private EditText blogTitleTxt;
+    EditText blogTitleTxt;
     private EditText blogDescTxt;
     private Button submitBtn;
     private RelativeLayout postLayout;
@@ -65,7 +65,6 @@ public class BlogPostActivity extends AppCompatActivity {
                     newPost.child("title").setValue(blogTitleContent);
                     newPost.child("desc").setValue(blogDescContent);
                     postProgress.dismiss();
-
                     finish();
                 }else{
             Snackbar.make(postLayout,"You haven't finished your post yet",Snackbar.LENGTH_SHORT);
