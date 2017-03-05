@@ -1,4 +1,4 @@
-package com.example.liamk.version3;
+package com.example.liamk.version3.Activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -8,9 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.liamk.version3.R;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -85,7 +85,6 @@ public class SignIn extends AppCompatActivity {
     }
 
     private void signIn() {
-        signInProgress.setMessage("Logging in");
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
@@ -97,6 +96,8 @@ public class SignIn extends AppCompatActivity {
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            signInProgress.setMessage("Signing into Perspective...");
+            signInProgress.show();
             if (result.isSuccess()) {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = result.getSignInAccount();
@@ -104,6 +105,7 @@ public class SignIn extends AppCompatActivity {
             } else {
                 // Google Sign In failed, update UI appropriately
                 // ...
+                signInProgress.dismiss();
             }
         }
     }
@@ -124,7 +126,7 @@ public class SignIn extends AppCompatActivity {
                             Toast.makeText(SignIn.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
-                        // ...
+                        signInProgress.dismiss();
                     }
                 });
     }

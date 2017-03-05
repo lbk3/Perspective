@@ -4,7 +4,7 @@
     android:id="@+id/postLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.liamk.version3.BlogPostActivity"
+    tools:context="com.example.liamk.version3.Activities.BlogPostActivity"
     android:orientation="horizontal">
 
 

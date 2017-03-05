@@ -1,8 +1,9 @@
-package com.example.liamk.version3;
+package com.example.liamk.version3.Activities;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,9 +14,18 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.widget.RelativeLayout;
+
+import com.example.liamk.version3.Fragments.BlogFrag;
+import com.example.liamk.version3.Fragments.EventsFrag;
+import com.example.liamk.version3.Fragments.LinksFrag;
+import com.example.liamk.version3.Fragments.TechFrag;
+import com.example.liamk.version3.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -137,6 +147,21 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.menu_settings){
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(MainActivity.this, SignIn.class));
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private class CustomerAdapter extends FragmentPagerAdapter {

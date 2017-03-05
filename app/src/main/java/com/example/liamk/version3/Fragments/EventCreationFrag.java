@@ -1,4 +1,4 @@
-package com.example.liamk.version3;
+package com.example.liamk.version3.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.liamk.version3.R;
 
 /**
  * Created by liamk on 22/01/2017.

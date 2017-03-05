@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.liamk.version3.SignIn">
+    tools:context="com.example.liamk.version3.Activities.SignIn">
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/googleSingInBtn"
@@ -18,12 +18,26 @@
         android:layout_centerHorizontal="true"></com.google.android.gms.common.SignInButton>
 
     <TextView
+        android:id="@+id/signInText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Welcome to Perspective"
-        android:layout_marginBottom="14dp"
+        android:layout_marginBottom="12dp"
+        android:textAppearance="@android:style/TextAppearance.Material.Title"
         android:layout_above="@+id/googleSingInBtn"
+        android:layout_centerHorizontal="true" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/signInText"
+        android:src="@drawable/perspective2"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Developed by Liam Keogh"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:textAppearance="@android:style/TextAppearance.Material.Title" />
+        android:textSize="10dp"/>
 
 </RelativeLayout>

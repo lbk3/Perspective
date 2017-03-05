@@ -1,4 +1,4 @@
-package com.example.liamk.version3;
+package com.example.liamk.version3.Activities;
 
 /**
  * Created by liamk on 16/02/2017.
