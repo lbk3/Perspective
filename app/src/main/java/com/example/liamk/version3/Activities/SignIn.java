@@ -2,10 +2,10 @@ package com.example.liamk.version3.Activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -50,7 +50,7 @@ public class SignIn extends AppCompatActivity {
                 if(firebaseAuth.getCurrentUser() !=null){
                     signInProgress.show();
                     signInProgress.dismiss();
-                    startActivity(new Intent(SignIn.this, MainActivity.class));
+                    startActivity(new Intent(SignIn.this, APIActivity.class));
                 }
             }
         };
