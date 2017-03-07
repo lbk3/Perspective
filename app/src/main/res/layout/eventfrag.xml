@@ -3,29 +3,23 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/eventList"
+        android:padding="5dp"
+        android:scrollbars="vertical"
+        android:scrollbarThumbVertical="@color/colorAccent"
+        android:scrollbarSize="3dp"/>
     <TextView
         android:text="Import Your Events"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/getView"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:visibility="invisible"/>
 
-    <RelativeLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:visibility="invisible">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/eventRecycle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical"
-            android:scrollbarThumbVertical="@color/colorAccent"
-            android:scrollbarSize="3dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true">
 
-        </android.support.v7.widget.RecyclerView>
-    </RelativeLayout>
+
 </LinearLayout>

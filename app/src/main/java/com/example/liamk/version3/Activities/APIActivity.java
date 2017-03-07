@@ -77,6 +77,7 @@ public class APIActivity extends Activity
                 LinearLayout.LayoutParams.MATCH_PARENT);
         activityLayout.setLayoutParams(lp);
         activityLayout.setOrientation(LinearLayout.VERTICAL);
+        activityLayout.isScrollContainer();
         activityLayout.setPadding(16, 16, 16, 16);
 
         ViewGroup.LayoutParams tlp = new ViewGroup.LayoutParams(
@@ -96,11 +97,17 @@ public class APIActivity extends Activity
         });
         activityLayout.addView(mCallApiButton);
 
+
+        enterApp = new Button(APIActivity.this);
+        enterApp.setVisibility(View.INVISIBLE);
+        enterApp.setPadding(0,5,0,0);
+        enterApp.setText("Let's Go");
+        activityLayout.addView(enterApp);
+
         mOutputText = new TextView(APIActivity.this);
         mOutputText.setLayoutParams(tlp);
         mOutputText.setPadding(16, 16, 16, 16);
         mOutputText.setTextSize(16);
-        mOutputText.setVerticalScrollBarEnabled(true);
         mOutputText.setMovementMethod(new ScrollingMovementMethod());
         activityLayout.addView(mOutputText);
 
@@ -112,14 +119,8 @@ public class APIActivity extends Activity
         apiValues.setMovementMethod(new ScrollingMovementMethod());
         activityLayout.addView(apiValues);
 
-        enterApp = new Button(APIActivity.this);
-        enterApp.setVisibility(View.INVISIBLE);
-        enterApp.setPadding(0,5,0,0);
-        enterApp.setText("Let's Go");
-        activityLayout.addView(enterApp);
-
         mProgress = new ProgressDialog(APIActivity.this);
-        mProgress.setMessage("Calling Google Calendar API ...");
+        mProgress.setMessage("Fetching your events..");
 
         setContentView(activityLayout);
 
@@ -179,7 +180,7 @@ public class APIActivity extends Activity
             // Request the GET_ACCOUNTS permission via a user dialog
             EasyPermissions.requestPermissions(
                     APIActivity.this,
-                    "This app needs to access your Google account (via Contacts).",
+                    "This app needs to access your Google account (via Calender).",
                     REQUEST_PERMISSION_GET_ACCOUNTS,
                     Manifest.permission.GET_ACCOUNTS);
         }
@@ -342,7 +343,7 @@ public class APIActivity extends Activity
             JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
             mService = new com.google.api.services.calendar.Calendar.Builder(
                     transport, jsonFactory, credential)
-                    .setApplicationName("Google Calendar API Android Quickstart")
+                    .setApplicationName("Perspective")
                     .build();
         }
 
@@ -367,11 +368,11 @@ public class APIActivity extends Activity
          * @throws IOException
          */
         public List<String> getDataFromApi() throws IOException {
-            // List the next 10 events from the primary calendar.
+            // List the next n events from the primary calendar.
             DateTime now = new DateTime(System.currentTimeMillis());
             List<String> eventStrings = new ArrayList<String>();
             Events events = mService.events().list("primary")
-                    .setMaxResults(30)
+                    .setMaxResults(35)
                     .setTimeMin(now)
                     .setOrderBy("startTime")
                     .setSingleEvents(true)
