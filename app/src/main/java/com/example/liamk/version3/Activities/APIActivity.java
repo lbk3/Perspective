@@ -100,6 +100,7 @@ public class APIActivity extends Activity
         activityLayout.addView(mCallApiButton);
 
 
+
         enterApp = new Button(APIActivity.this);
         enterApp.setVisibility(View.INVISIBLE);
         enterApp.setPadding(0,5,0,0);
@@ -410,7 +411,7 @@ public class APIActivity extends Activity
                 mOutputText.setText("No results returned.");
             } else {
                 apiValues.setText(TextUtils.join("\n", output));
-                enterApp.setVisibility(View.VISIBLE);
+                //enterApp.setVisibility(View.VISIBLE);
                 enterApp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -421,6 +422,7 @@ public class APIActivity extends Activity
                         startActivity(intent);
                     }
                 });
+                enterApp.performClick();
             }
         }
 
@@ -444,5 +446,5 @@ public class APIActivity extends Activity
                 mOutputText.setText("Request cancelled.");
             }
         }
+        }
     }
-}

@@ -37,12 +37,19 @@ public class LinksFrag extends Fragment {
     public static List<LinkData> getData(){
         List<LinkData> linkData = new ArrayList<>();
         int[] icons = {R.drawable.moodgym, R.drawable.betterhelp, R.drawable.turn2me, R.drawable.cups, R.drawable.samh, R.drawable.nhs};
-        String[] titles = {"MoodGym", "BetterHelp", "turn2me", "7cups", "SAMH", "NHS"};
+        String[] titles = {"MoodGym", "BetterHelp", "turn2me", "7 Cups of Tea", "SAMH", "NHS"};
+        String[] descs = {"MoodGYM is an interactive self-help program that provides CBT training in order to help users prevent and cope with mental health issues",
+                "BetterHelp is an online portal that provides direct-to-consumer access to behavioral health services",
+                "turn2me is an online support community offering a three tiered approach to supporting mental health issues. ",
+                "7 Cups is a service which provides free support to people experiencing emotional distress by connecting them with trained listeners.",
+                "SAMH is based in Scotland, providing mental health social care support, homelessness, addictions and employment services, among others.",
+                "The National Health Service has a variety of online resources for coping with mental health issues"};
         for(int i=0;i<icons.length && i<titles.length; i++)
         {
             LinkData current = new LinkData();
             current.cardTitle = titles[i];
             current.imageID = icons[i];
+            current.cardDesc = descs[i];
             linkData.add(current);
         }
         return linkData;

@@ -42,6 +42,7 @@ public class MyLinkAdapter extends RecyclerView.Adapter<MyLinkAdapter.MyLinkView
         LinkData current = linkdata.get(position);
         holder.linkTitle.setText(current.cardTitle);
         holder.linkImage.setImageResource(current.imageID);
+        holder.linkDesc.setText(current.cardDesc);
 
         holder.linkCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,12 +97,14 @@ public class MyLinkAdapter extends RecyclerView.Adapter<MyLinkAdapter.MyLinkView
     class MyLinkViewHolder extends RecyclerView.ViewHolder{
         ImageView linkImage;
         TextView linkTitle;
+        TextView linkDesc;
         CardView linkCard;
 
         public MyLinkViewHolder(View itemView) {
             super(itemView);
             linkImage = (ImageView) itemView.findViewById(R.id.linkIcon);
             linkTitle = (TextView) itemView.findViewById(R.id.linkTitle);
+            linkDesc = (TextView) itemView.findViewById(R.id.linkDesc);
             linkCard = (CardView) itemView.findViewById(R.id.linkCardView);
         }
     }

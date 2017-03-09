@@ -28,11 +28,22 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/linkIcon"
             android:maxLines="3"
-            android:padding="8dp"
+            android:padding="5dp"
             android:text="blah"
             android:textColor="#222"
             android:textStyle="bold"
             android:textSize="22dp" />
+
+        <TextView
+            android:id="@+id/linkDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linkTitle"
+            android:maxLines="3"
+            android:padding="5dp"
+            android:text="blah"
+            android:textColor="@color/grey"
+            android:textSize="12dp" />
 
     </RelativeLayout>
     </android.support.v7.widget.CardView>

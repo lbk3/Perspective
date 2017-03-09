@@ -7,4 +7,5 @@ package com.example.liamk.version3.CardInfo;
 public class LinkData {
     public int imageID;
     public String cardTitle;
+    public String cardDesc;
 }
