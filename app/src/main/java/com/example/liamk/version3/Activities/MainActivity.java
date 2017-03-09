@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private class CustomerAdapter extends FragmentPagerAdapter {
-        private String fragments [] = {"Events", "Techniques", "Links", "Blog",};
+        private String fragments [] = {"Events", "Techniques", "Feed", "Links",};
         public CustomerAdapter(FragmentManager supportFragmentManager, Context applicationContext) {
             super(supportFragmentManager);
         }
@@ -183,9 +183,9 @@ public class MainActivity extends AppCompatActivity {
                 case 1:
                     return new TechFrag();
                 case 2:
-                    return new LinksFrag();
-                case 3:
                     return new BlogFrag();
+                case 3:
+                    return new LinksFrag();
                 default:
                     return null;
             }

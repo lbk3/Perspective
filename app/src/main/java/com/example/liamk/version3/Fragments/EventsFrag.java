@@ -35,8 +35,9 @@ public class EventsFrag extends Fragment {
 
         getData = getActivity().getIntent().getExtras().getString("importEvents");
         List<String> myList = new ArrayList<String>(Arrays.asList(getData.split(",")));
-        myList.remove(0);
-        myList.remove(myList.size() - 1);
+        //myList.remove(0);
+        //myList.remove(myList.size() - 1);
+        //myList.get(0).substring(0, myList.get(0).indexOf('('));
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1, myList);
         eventList.setAdapter(arrayAdapter);

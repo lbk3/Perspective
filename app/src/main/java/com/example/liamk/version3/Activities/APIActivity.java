@@ -39,6 +39,8 @@ import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.Events;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -372,22 +374,24 @@ public class APIActivity extends Activity
             DateTime now = new DateTime(System.currentTimeMillis());
             List<String> eventStrings = new ArrayList<String>();
             Events events = mService.events().list("primary")
-                    .setMaxResults(35)
+                    .setMaxResults(20)
                     .setTimeMin(now)
                     .setOrderBy("startTime")
                     .setSingleEvents(true)
+                    .setTimeZone("Europe/London")
                     .execute();
             List<Event> items = events.getItems();
 
             for (Event event : items) {
+                //DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
                 DateTime start = event.getStart().getDateTime();
+                //String formattedDate = dateFormat.format(event.getStart().getDateTime());
                 if (start == null) {
                     // All-day events don't have start times, so just use
                     // the start date.
                     start = event.getStart().getDate();
                 }
-                eventStrings.add(
-                        String.format("%s (%s)", event.getSummary(), start));
+                eventStrings.add(String.format("%s \n %s", event.getSummary(), start));
             }
             return eventStrings;
         }
@@ -410,8 +414,10 @@ public class APIActivity extends Activity
                 enterApp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        String outputStirng = output.toString();
+                        outputStirng = outputStirng.substring(1, outputStirng.length() - 1);
                         Intent intent = new Intent(APIActivity.this, MainActivity.class);
-                        intent.putExtra("importEvents", output.toString());
+                        intent.putExtra("importEvents", " "+ outputStirng);
                         startActivity(intent);
                     }
                 });
