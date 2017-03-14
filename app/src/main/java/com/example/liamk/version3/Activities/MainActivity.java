@@ -38,11 +38,14 @@ public class MainActivity extends AppCompatActivity {
     private RelativeLayout animLayout;
     private Button activity2;
     private TextView apiData;
+    private FloatingActionButton myFab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        myFab = (FloatingActionButton) findViewById(R.id.fab);
 
         relLayout = (RelativeLayout) findViewById(R.id.relLayout);
         animLayout = (RelativeLayout) findViewById(R.id.animLayout);
@@ -71,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        final FloatingActionButton myFab = (FloatingActionButton) findViewById(R.id.fab);
+
         myFab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (animLayout.getVisibility() == View.INVISIBLE) {
@@ -87,8 +90,7 @@ public class MainActivity extends AppCompatActivity {
                         Animator anim = ViewAnimationUtils.createCircularReveal(animLayout, cx, cy, 0, finalRadius);
 
                         // make the view visible and start the animation
-                        relLayout.setVisibility(View.INVISIBLE);
-                        animLayout.setVisibility(View.VISIBLE);
+                        startActivity(new Intent(MainActivity.this, BlogPostActivity.class));
                         anim.setDuration(1000);
                         anim.start();
 
@@ -112,8 +114,7 @@ public class MainActivity extends AppCompatActivity {
                                             @Override
                                             public void onAnimationEnd(Animator animation) {
                                                 super.onAnimationEnd(animation);
-                                                animLayout.setVisibility(View.INVISIBLE);
-                                                relLayout.setVisibility(View.VISIBLE);
+                                                startActivity(new Intent(MainActivity.this, BlogPostActivity.class));
                                             }
                                         });
 
@@ -122,8 +123,7 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                 }).show();
                     } else {
-                        relLayout.setVisibility(View.INVISIBLE);
-                        animLayout.setVisibility(View.VISIBLE);
+                        startActivity(new Intent(MainActivity.this, BlogPostActivity.class));
                     }
                 } else{
                     // get the center for the clipping circle
@@ -142,8 +142,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onAnimationEnd(Animator animation) {
                             super.onAnimationEnd(animation);
-                            animLayout.setVisibility(View.INVISIBLE);
-                            relLayout.setVisibility(View.VISIBLE);
+                            //
                         }
                     });
 
