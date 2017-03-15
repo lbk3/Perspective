@@ -33,19 +33,19 @@ public class MainActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    private FragmentTransaction fragTrans;
+    //private FragmentTransaction fragTrans;
     private RelativeLayout relLayout;
     private RelativeLayout animLayout;
     private Button activity2;
     private TextView apiData;
-    private FloatingActionButton myFab;
+    //private FloatingActionButton myFab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        myFab = (FloatingActionButton) findViewById(R.id.fab);
+        //myFab = (FloatingActionButton) findViewById(R.id.fab);
 
         relLayout = (RelativeLayout) findViewById(R.id.relLayout);
         animLayout = (RelativeLayout) findViewById(R.id.animLayout);
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        myFab.setOnClickListener(new View.OnClickListener() {
+        /*myFab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (animLayout.getVisibility() == View.INVISIBLE) {
                     if (Build.VERSION.SDK_INT >= 21) {
@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
                     anim.start();
                 }
             }
-        });
+        });*/
     }
 
     @Override

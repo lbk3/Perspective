@@ -1,12 +1,18 @@
 package com.example.liamk.version3.Fragments;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,21 +20,24 @@ import android.widget.TextView;
 
 import com.example.liamk.version3.Activities.Blog;
 import com.example.liamk.version3.Activities.BlogPostActivity;
+import com.example.liamk.version3.Activities.MainActivity;
 import com.example.liamk.version3.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import static com.example.liamk.version3.R.id.animLayout;
 
 /**
  * Created by liamk on 22/01/2017.
  */
 public class BlogFrag extends Fragment{
 
-    Button blogPost;
     private DatabaseReference blogDB;
     EditText postTitleTxt;
     EditText postDescTxt;
     RecyclerView blogRV;
+    private FloatingActionButton myFab;
 
 
 
@@ -39,17 +48,20 @@ public class BlogFrag extends Fragment{
         postTitleTxt = (EditText) getActivity().findViewById(R.id.titleInput);
         postDescTxt = (EditText) getActivity().findViewById(R.id.descInput);
 
-        blogPost = (Button) blogview.findViewById(R.id.openBlogBtn);
-        blogPost.setOnClickListener(new View.OnClickListener(){
+        blogRV = (RecyclerView) blogview.findViewById(R.id.blogRecycle);
+        blogRV.setHasFixedSize(true);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        mLayoutManager.setReverseLayout(true);
+        mLayoutManager.setStackFromEnd(true);
+        blogRV.setLayoutManager(mLayoutManager);
+
+        myFab = (FloatingActionButton) blogview.findViewById(R.id.blogfab);
+        myFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), BlogPostActivity.class));
             }
         });
-
-        blogRV = (RecyclerView) blogview.findViewById(R.id.blogRecycle);
-        blogRV.setHasFixedSize(true);
-        blogRV.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
 

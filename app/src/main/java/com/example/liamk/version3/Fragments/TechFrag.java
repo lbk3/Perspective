@@ -43,8 +43,8 @@ public class TechFrag extends Fragment{
 
     public static List<TechData> getData(){
         List<TechData> data = new ArrayList<>();
-        int[] icons = {R.drawable.timeout, R.drawable.countdown, R.drawable.meditation, R.drawable.positive, R.drawable.sleep, R.drawable.breath, R.drawable.running, R.drawable.friend};
-        String[] titles = {"Take a Time Out", "Count Down", "Meditation", "Positive Reinforcement", "4-7-8 Breathing", "Breath Regulation", "Aerobic Exercise", "Open Up"};
+        int[] icons = {R.drawable.coffeebook, R.drawable.countdown, R.drawable.meditate, R.drawable.positivethinking, R.drawable.sleep, R.drawable.run, R.drawable.openup};
+        String[] titles = {"Take a Time Out", "Count Down", "Meditation", "Positive Reinforcement", "4-7-8 Breathing", "Aerobic Exercise", "Open Up"};
         for(int i=0;i<icons.length && i<titles.length; i++)
         {
             TechData current = new TechData();
