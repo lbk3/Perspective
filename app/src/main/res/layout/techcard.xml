@@ -9,31 +9,34 @@
         card_view:cardCornerRadius="5dp"
         android:clickable="true">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/techImage"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/common_google_signin_btn_icon_dark"
-            android:scaleType="centerCrop"
-            android:cropToPadding="false"
-            android:adjustViewBounds="true" />
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/techText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/techImage"
-            android:maxLines="3"
-            android:padding="8dp"
-            android:text="blah"
-            android:textColor="#222"
-            android:textStyle="bold"
-            android:textSize="22dp" />
+            <ImageView
+                android:id="@+id/techImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/common_google_signin_btn_icon_dark"
+                android:scaleType="centerCrop"
+                android:cropToPadding="false"
+                android:adjustViewBounds="true" />
+
+            <TextView
+                android:id="@+id/techText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="3"
+                android:padding="8dp"
+                android:text="blah"
+                android:textColor="#222"
+                android:textSize="35dp"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="sans-serif" />
 
 
-    </RelativeLayout>
+        </RelativeLayout>
+
     </android.support.v7.widget.CardView>

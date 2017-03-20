@@ -1,6 +1,7 @@
 package com.example.liamk.version3.Adapters;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.CardView;
@@ -9,11 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.liamk.version3.CardInfo.TechData;
 import com.example.liamk.version3.R;
+import com.example.liamk.version3.Techniques.TechniqueActivity;
 
 import org.w3c.dom.Text;
 
@@ -23,7 +26,6 @@ import java.util.List;
 public class MyTechniqueAdapter extends RecyclerView.Adapter<MyTechniqueAdapter.MyViewHolder> {
    private LayoutInflater inflater;
     List<TechData> data = Collections.emptyList();
-
 
 
     public MyTechniqueAdapter(Context context, List<TechData> data){
@@ -40,10 +42,12 @@ public class MyTechniqueAdapter extends RecyclerView.Adapter<MyTechniqueAdapter.
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, final int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
         TechData current = data.get(position);
         holder.techTitle.setText(current.cardTitle);
         holder.techImage.setImageResource(current.imageID);
+
+
 
         holder.techCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,17 +58,18 @@ public class MyTechniqueAdapter extends RecyclerView.Adapter<MyTechniqueAdapter.
                 } else if(position == 1){
                     Snackbar.make(view, "Let's count down from 10", Snackbar.LENGTH_LONG).show();
                 }else if(position == 2){
+                    Intent intent = new Intent(view.getContext(),TechniqueActivity.class);
+                    intent.putExtra("importMeditation", "Meditation");
+                    view.getContext().startActivity(intent);
                     Snackbar.make(view, "Let's meditate", Snackbar.LENGTH_LONG).show();
                 }else if(position == 3){
                     Snackbar.make(view, "Good job!", Snackbar.LENGTH_LONG).show();
                 }else if(position == 4){
                     Snackbar.make(view, "Try this breathing technique", Snackbar.LENGTH_LONG).show();
                 }else if(position == 5){
-                    Snackbar.make(view, "Let's get control of your breathing", Snackbar.LENGTH_LONG).show();
-                }else if(position == 6){
                     Snackbar.make(view, "Let's do some cardio", Snackbar.LENGTH_LONG).show();
-                }else if(position == 7){
-                    Snackbar.make(view, "Talk to someone", Snackbar.LENGTH_LONG).show();
+                }else if(position == 6){
+                    Snackbar.make(view, "Talk to someone you can trust", Snackbar.LENGTH_LONG).show();
                 }
             }
         });
@@ -82,9 +87,12 @@ public class MyTechniqueAdapter extends RecyclerView.Adapter<MyTechniqueAdapter.
 
         public MyViewHolder(View itemView) {
             super(itemView);
+
             techImage = (ImageView) itemView.findViewById(R.id.techImage);
             techTitle = (TextView) itemView.findViewById(R.id.techText);
             techCard = (CardView) itemView.findViewById(R.id.techCardView);
+            Typeface custom_font = Typeface.createFromAsset(itemView.getContext().getAssets(), "fourhand.ttf");
+            techTitle.setTypeface(custom_font);
         }
     }
 }

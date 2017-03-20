@@ -23,7 +23,6 @@ import java.util.List;
  * Created by liamk on 22/01/2017.
  */
 public class EventsFrag extends Fragment {
-    TextView getList;
     String getData;
     ListView eventList;
 
@@ -31,13 +30,9 @@ public class EventsFrag extends Fragment {
         View view = inflater.inflate(R.layout.eventfrag, container, false);
 
         eventList = (ListView) view.findViewById(R.id.eventList);
-        getList = (TextView) view.findViewById(R.id.getView);
 
         getData = getActivity().getIntent().getExtras().getString("importEvents");
         List<String> myList = new ArrayList<String>(Arrays.asList(getData.split(",")));
-        //myList.remove(0);
-        //myList.remove(myList.size() - 1);
-        //myList.get(0).substring(0, myList.get(0).indexOf('('));
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1, myList);
         eventList.setAdapter(arrayAdapter);

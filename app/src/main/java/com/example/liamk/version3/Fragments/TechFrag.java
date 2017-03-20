@@ -1,5 +1,6 @@
 package com.example.liamk.version3.Fragments;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.liamk.version3.Adapters.MyTechniqueAdapter;
 import com.example.liamk.version3.CardInfo.TechData;
@@ -43,7 +45,7 @@ public class TechFrag extends Fragment{
 
     public static List<TechData> getData(){
         List<TechData> data = new ArrayList<>();
-        int[] icons = {R.drawable.coffeebook, R.drawable.countdown, R.drawable.meditate, R.drawable.positivethinking, R.drawable.sleep, R.drawable.run, R.drawable.openup};
+        int[] icons = {R.drawable.waterblue, R.drawable.watergreen, R.drawable.waterorange, R.drawable.waterpurple, R.drawable.waterred, R.drawable.waterviolet, R.drawable.wateryellow};
         String[] titles = {"Take a Time Out", "Count Down", "Meditation", "Positive Reinforcement", "4-7-8 Breathing", "Aerobic Exercise", "Open Up"};
         for(int i=0;i<icons.length && i<titles.length; i++)
         {

@@ -50,6 +50,15 @@ public class BlogFrag extends Fragment{
 
         blogRV = (RecyclerView) blogview.findViewById(R.id.blogRecycle);
         blogRV.setHasFixedSize(true);
+        blogRV.addOnScrollListener(new RecyclerView.OnScrollListener(){
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy){
+                if (dy > 0)
+                    myFab.hide();
+                else if (dy < 0)
+                    myFab.show();
+            }
+        });
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         mLayoutManager.setReverseLayout(true);
         mLayoutManager.setStackFromEnd(true);
