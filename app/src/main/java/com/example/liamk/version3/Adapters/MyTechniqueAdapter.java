@@ -52,24 +52,63 @@ public class MyTechniqueAdapter extends RecyclerView.Adapter<MyTechniqueAdapter.
         holder.techCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String techInfo;
                 if(position == 0)
                 {
                     Snackbar.make(view, "Take a time out, grab a coffee", Snackbar.LENGTH_LONG).show();
-                } else if(position == 1){
-                    Snackbar.make(view, "Let's count down from 10", Snackbar.LENGTH_LONG).show();
-                }else if(position == 2){
-                    Intent intent = new Intent(view.getContext(),TechniqueActivity.class);
-                    intent.putExtra("importMeditation", "Meditation");
+                    Intent intent = new Intent(view.getContext(), TechniqueActivity.class);
+                    techInfo = "This is for taking a break";
+                    intent.putExtra("importMedTitle", "Take a Break");
+                    intent.putExtra("importMedDesc", techInfo);
                     view.getContext().startActivity(intent);
+                }
+                else if(position == 1){
+                    Snackbar.make(view, "Let's count down from 10", Snackbar.LENGTH_LONG).show();
+                    Intent intent = new Intent(view.getContext(), TechniqueActivity.class);
+                    techInfo = "This is for couting down";
+                    intent.putExtra("importMedTitle", "Count Down");
+                    intent.putExtra("importMedDesc", techInfo);
+                    view.getContext().startActivity(intent);
+                }
+                else if(position == 2){
                     Snackbar.make(view, "Let's meditate", Snackbar.LENGTH_LONG).show();
-                }else if(position == 3){
+                    Intent intent = new Intent(view.getContext(),TechniqueActivity.class);
+                    techInfo = "This is for meditation";
+                    intent.putExtra("importMedTitle", "Meditation");
+                    intent.putExtra("importMedDesc", techInfo);
+                    view.getContext().startActivity(intent);
+                }
+                else if(position == 3){
                     Snackbar.make(view, "Good job!", Snackbar.LENGTH_LONG).show();
-                }else if(position == 4){
+                    Intent intent = new Intent(view.getContext(),TechniqueActivity.class);
+                    techInfo = "This is for positive reinforcement";
+                    intent.putExtra("importMedTitle", "Reinforcement");
+                    intent.putExtra("importMedDesc", techInfo);
+                    view.getContext().startActivity(intent);
+                }
+                else if(position == 4){
                     Snackbar.make(view, "Try this breathing technique", Snackbar.LENGTH_LONG).show();
-                }else if(position == 5){
+                    Intent intent = new Intent(view.getContext(),TechniqueActivity.class);
+                    techInfo = "This is for breathing";
+                    intent.putExtra("importMedTitle", "Breathing");
+                    intent.putExtra("importMedDesc", techInfo);
+                    view.getContext().startActivity(intent);
+                }
+                else if(position == 5){
                     Snackbar.make(view, "Let's do some cardio", Snackbar.LENGTH_LONG).show();
-                }else if(position == 6){
+                    Intent intent = new Intent(view.getContext(),TechniqueActivity.class);
+                    techInfo = "This is for cardio";
+                    intent.putExtra("importMedTitle", "Cardio");
+                    intent.putExtra("importMedDesc", techInfo);
+                    view.getContext().startActivity(intent);
+                }
+                else if(position == 6){
                     Snackbar.make(view, "Talk to someone you can trust", Snackbar.LENGTH_LONG).show();
+                    Intent intent = new Intent(view.getContext(),TechniqueActivity.class);
+                    techInfo = "This is for talking to someone";
+                    intent.putExtra("importMedTitle", "Open");
+                    intent.putExtra("importMedDesc", techInfo);
+                    view.getContext().startActivity(intent);
                 }
             }
         });

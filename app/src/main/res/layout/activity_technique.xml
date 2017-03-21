@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_technique"
     android:layout_width="match_parent"
@@ -13,13 +14,18 @@
 
 
     <TextView
-        android:id="@+id/techHeader"
-        android:text="Technique"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textSize="35dp"
-        android:textColor="#222" />
+        android:id="@+id/techTitle"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/tech478"
+        android:id="@+id/techHeader"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -27,7 +33,9 @@
         android:padding="5dp"
         android:scrollbars="vertical"
         android:scrollbarThumbVertical="@color/colorAccent"
-        android:scrollbarSize="3dp">
+        android:scrollbarSize="3dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,9 +46,12 @@
 
             <TextView
                 android:id="@+id/techDescription"
-                android:text="TextView"
+                android:text="Description"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textSize="17dp"
+                android:textColor="#222"/>
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
