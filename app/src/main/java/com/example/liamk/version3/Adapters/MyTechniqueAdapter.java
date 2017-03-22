@@ -57,7 +57,7 @@ public class MyTechniqueAdapter extends RecyclerView.Adapter<MyTechniqueAdapter.
                 {
                     Snackbar.make(view, "Take a time out, grab a coffee", Snackbar.LENGTH_LONG).show();
                     Intent intent = new Intent(view.getContext(), TechniqueActivity.class);
-                    techInfo = "This is for taking a break";
+                    techInfo = view.getContext().getString(R.string.timeout);
                     intent.putExtra("importMedTitle", "Take a Break");
                     intent.putExtra("importMedDesc", techInfo);
                     view.getContext().startActivity(intent);
@@ -73,7 +73,7 @@ public class MyTechniqueAdapter extends RecyclerView.Adapter<MyTechniqueAdapter.
                 else if(position == 2){
                     Snackbar.make(view, "Let's meditate", Snackbar.LENGTH_LONG).show();
                     Intent intent = new Intent(view.getContext(),TechniqueActivity.class);
-                    techInfo = "This is for meditation";
+                    techInfo = view.getContext().getString(R.string.meditation);
                     intent.putExtra("importMedTitle", "Meditation");
                     intent.putExtra("importMedDesc", techInfo);
                     view.getContext().startActivity(intent);
@@ -81,7 +81,7 @@ public class MyTechniqueAdapter extends RecyclerView.Adapter<MyTechniqueAdapter.
                 else if(position == 3){
                     Snackbar.make(view, "Good job!", Snackbar.LENGTH_LONG).show();
                     Intent intent = new Intent(view.getContext(),TechniqueActivity.class);
-                    techInfo = "This is for positive reinforcement";
+                    techInfo = view.getContext().getString(R.string.posreinforce);
                     intent.putExtra("importMedTitle", "Reinforcement");
                     intent.putExtra("importMedDesc", techInfo);
                     view.getContext().startActivity(intent);
@@ -89,7 +89,7 @@ public class MyTechniqueAdapter extends RecyclerView.Adapter<MyTechniqueAdapter.
                 else if(position == 4){
                     Snackbar.make(view, "Try this breathing technique", Snackbar.LENGTH_LONG).show();
                     Intent intent = new Intent(view.getContext(),TechniqueActivity.class);
-                    techInfo = "This is for breathing";
+                    techInfo = view.getContext().getString(R.string.breathing);
                     intent.putExtra("importMedTitle", "Breathing");
                     intent.putExtra("importMedDesc", techInfo);
                     view.getContext().startActivity(intent);

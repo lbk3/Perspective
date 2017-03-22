@@ -46,7 +46,7 @@ public class TechFrag extends Fragment{
     public static List<TechData> getData(){
         List<TechData> data = new ArrayList<>();
         int[] icons = {R.drawable.waterblue, R.drawable.watergreen, R.drawable.waterorange, R.drawable.waterpurple, R.drawable.waterred, R.drawable.waterviolet, R.drawable.wateryellow};
-        String[] titles = {"Take a Time Out", "Count Down", "Meditation", "Positive Reinforcement", "4-7-8 Breathing", "Aerobic Exercise", "Open Up"};
+        String[] titles = {"Take a Time Out", "Count Down", "Mindfulness", "Positive Reinforcement", "4-7-8 Breathing", "Aerobic Exercise", "Open Up"};
         for(int i=0;i<icons.length && i<titles.length; i++)
         {
             TechData current = new TechData();
