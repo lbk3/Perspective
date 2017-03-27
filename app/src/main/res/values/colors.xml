@@ -11,4 +11,8 @@
     <item name="green" type="color">#4499CC00</item>
     <item name="darkgreen" type="color">#FF669900</item>
     <item name="white" type="color">#FFFFFF</item>
+
+    <item name="listred" type="color">#d37070</item>
+    <item name="listblue" type="color">#92b5f3</item>
+    <item name="listgreen" type="color">#98e5a6</item>
 </resources>
