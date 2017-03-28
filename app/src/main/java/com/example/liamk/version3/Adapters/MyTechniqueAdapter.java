@@ -65,7 +65,7 @@ public class MyTechniqueAdapter extends RecyclerView.Adapter<MyTechniqueAdapter.
                 else if(position == 1){
                     Snackbar.make(view, "Let's count down from 10", Snackbar.LENGTH_LONG).show();
                     Intent intent = new Intent(view.getContext(), TechniqueActivity.class);
-                    techInfo = "This is for couting down";
+                    techInfo = view.getContext().getString(R.string.countdown);
                     intent.putExtra("importMedTitle", "Count Down");
                     intent.putExtra("importMedDesc", techInfo);
                     view.getContext().startActivity(intent);
@@ -73,7 +73,7 @@ public class MyTechniqueAdapter extends RecyclerView.Adapter<MyTechniqueAdapter.
                 else if(position == 2){
                     Snackbar.make(view, "Let's meditate", Snackbar.LENGTH_LONG).show();
                     Intent intent = new Intent(view.getContext(),TechniqueActivity.class);
-                    techInfo = view.getContext().getString(R.string.meditation);
+                    techInfo = view.getContext().getString(R.string.mindfulness);
                     intent.putExtra("importMedTitle", "Meditation");
                     intent.putExtra("importMedDesc", techInfo);
                     view.getContext().startActivity(intent);
@@ -97,7 +97,7 @@ public class MyTechniqueAdapter extends RecyclerView.Adapter<MyTechniqueAdapter.
                 else if(position == 5){
                     Snackbar.make(view, "Let's do some cardio", Snackbar.LENGTH_LONG).show();
                     Intent intent = new Intent(view.getContext(),TechniqueActivity.class);
-                    techInfo = "This is for cardio";
+                    techInfo = view.getContext().getString(R.string.cardio);
                     intent.putExtra("importMedTitle", "Cardio");
                     intent.putExtra("importMedDesc", techInfo);
                     view.getContext().startActivity(intent);
@@ -105,7 +105,7 @@ public class MyTechniqueAdapter extends RecyclerView.Adapter<MyTechniqueAdapter.
                 else if(position == 6){
                     Snackbar.make(view, "Talk to someone you can trust", Snackbar.LENGTH_LONG).show();
                     Intent intent = new Intent(view.getContext(),TechniqueActivity.class);
-                    techInfo = "This is for talking to someone";
+                    techInfo = view.getContext().getString(R.string.openup);
                     intent.putExtra("importMedTitle", "Open");
                     intent.putExtra("importMedDesc", techInfo);
                     view.getContext().startActivity(intent);

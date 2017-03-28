@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:textSize="16dp"
+        android:textSize="18sp"
         android:textColor="#222"
         android:id="@+id/rowText"
         android:layout_marginLeft="10dp"
@@ -19,7 +19,7 @@
         android:layout_toEndOf="@+id/rowColour" />
 
     <TextView
-        android:width="6dp"
+        android:width="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/rowColour"

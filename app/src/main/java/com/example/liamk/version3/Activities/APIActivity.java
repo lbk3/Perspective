@@ -420,6 +420,7 @@ public class APIActivity extends Activity
                         Intent intent = new Intent(APIActivity.this, MainActivity.class);
                         intent.putExtra("importEvents", " "+ outputStirng);
                         startActivity(intent);
+                        finish();
                     }
                 });
                 enterApp.performClick();
