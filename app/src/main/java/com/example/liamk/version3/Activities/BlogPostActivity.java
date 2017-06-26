@@ -14,8 +14,11 @@ import android.widget.RelativeLayout;
 
 import com.example.liamk.version3.Fragments.BlogFrag;
 import com.example.liamk.version3.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.perf.FirebasePerformance;
+import com.google.firebase.perf.metrics.Trace;
 
 public class BlogPostActivity extends AppCompatActivity {
 
@@ -23,6 +26,7 @@ public class BlogPostActivity extends AppCompatActivity {
     private EditText blogDescTxt;
     private Button submitBtn;
     private RelativeLayout postLayout;
+    private FirebaseAuth dbAuth;
 
     private ProgressDialog postProgress;
 
@@ -42,6 +46,7 @@ public class BlogPostActivity extends AppCompatActivity {
         postProgress = new ProgressDialog(this);
 
         blogDB = FirebaseDatabase.getInstance().getReference().child("Blog");
+        dbAuth = FirebaseAuth.getInstance();
 
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,11 +66,11 @@ public class BlogPostActivity extends AppCompatActivity {
                     DatabaseReference newPost = blogDB.push();
                     newPost.child("title").setValue(blogTitleContent);
                     newPost.child("desc").setValue(blogDescContent);
+                    newPost.child("user").setValue(dbAuth.getCurrentUser().getEmail());
                     postProgress.dismiss();
                     finish();
                 }else{
             Snackbar.make(postLayout,"You haven't finished your post yet",Snackbar.LENGTH_SHORT);
         }
-
         }
     }

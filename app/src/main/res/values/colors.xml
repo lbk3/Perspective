@@ -3,7 +3,7 @@
     <color name="colorPrimary">#388E3C</color>
     <color name="colorPrimaryDark">#388E3C</color>
     <color name="colorSecondary">#81C784</color>
-    <color name="colorAccent">#FFAB00</color>
+    <color name="colorAccent">#ffab00</color>
     <color name="colorBlogbox">#555555</color>
 
     <item name="transparent" type="color">#00FFFFFF</item>

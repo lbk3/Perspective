@@ -32,6 +32,8 @@ import com.example.liamk.version3.Fragments.LinksFrag;
 import com.example.liamk.version3.Fragments.TechFrag;
 import com.example.liamk.version3.R;
 import com.google.firebase.auth.FirebaseAuth;
+import io.fabric.sdk.android.Fabric;
+import com.crashlytics.android.Crashlytics;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Fabric.with(this, new Crashlytics());
 
         //myFab = (FloatingActionButton) findViewById(R.id.fab);
 

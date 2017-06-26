@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/blogCardView"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -9,9 +10,20 @@
     card_view:cardCornerRadius="5dp"
     android:clickable="true">
 
+
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/voteCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="0"
+            android:textSize="23dp"
+            android:textColor="@color/colorPrimary"
+            android:layout_centerVertical="true" />
 
         <TextView
             android:id="@+id/blogCardTitleTxt"
@@ -23,19 +35,48 @@
             android:textColor="#222"
             android:textStyle="bold"
             android:fontFamily="sans-serif"
-            android:textSize="22dp" />
+            android:textSize="20dp"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@id/voteCount"/>
 
         <TextView
             android:id="@+id/blogCardDescTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/blogCardTitleTxt"
             android:maxLines="3"
             android:padding="10dp"
             android:textColor="#666"
             android:fontFamily="sans-serif"
             android:textSize="14dp"
-            android:text="Post Description" />
+            android:text="Post Description"
+            android:layout_weight="1"
+            android:layout_below="@+id/blogCardTitleTxt"
+            android:layout_toEndOf="@id/voteCount"
+            android:layout_centerHorizontal="true"/>
+
+
+        <ImageButton
+            android:id="@+id/postVote"
+            card_view:srcCompat="@mipmap/ic_plus_one_black_24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_marginLeft="5dp"
+            android:layout_below="@id/blogCardDescTxt"
+            android:layout_toEndOf="@id/voteCount"/>
+
+        <ImageButton
+            android:id="@+id/postComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            card_view:srcCompat="@mipmap/ic_reply_black_24dp"
+            android:background="@null"
+            android:layout_below="@id/blogCardDescTxt"
+            android:layout_toEndOf="@id/postVote"
+            android:layout_marginLeft="10dp"/>
+
+
 
     </RelativeLayout>
+
 </android.support.v7.widget.CardView>

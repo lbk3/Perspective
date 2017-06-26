@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id = "@+id/postData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/singleTitleTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:padding="10dp"
+            android:text="Post Title"
+            android:textColor="#222"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"
+            android:textSize="20dp"
+            android:layout_alignParentTop="true" />
+
+        <TextView
+            android:id="@+id/singleDescTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:padding="10dp"
+            android:textColor="#666"
+            android:fontFamily="sans-serif"
+            android:textSize="14dp"
+            android:text="Post Description"
+            android:layout_weight="1"
+            android:layout_below="@+id/singleTitleTxt"
+            android:layout_toEndOf="@+id/postData" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/commentList"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:padding="5dp"
+        android:scrollbars="vertical"
+        android:scrollbarThumbVertical="@color/colorAccent"
+        android:scrollbarSize="3dp"/>
+
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/commentInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:background="@drawable/text_template"
+            android:layout_below="@+id/commentList"
+            android:layout_marginRight="20dp"
+            android:padding="10dp"
+            android:hint="Add comment..." />
+    </LinearLayout>
+
+</LinearLayout>

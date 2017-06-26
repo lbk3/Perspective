@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+
 import com.example.liamk.version3.R;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -24,6 +25,8 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
+import io.fabric.sdk.android.Fabric;
+import com.crashlytics.android.Crashlytics;
 
 public class SignIn extends AppCompatActivity {
 
@@ -39,6 +42,7 @@ public class SignIn extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_sign_in);
 
         signInProgress = new ProgressDialog(this);
@@ -51,6 +55,9 @@ public class SignIn extends AppCompatActivity {
                     signInProgress.show();
                     signInProgress.dismiss();
                     startActivity(new Intent(SignIn.this, APIActivity.class));
+                    /*Intent intent = new Intent(SignIn.this, PostInteractionActivity.class);
+                    intent.putExtra("importAccount", uniquePostID);
+                    startActivity(intent);*/
                 }
             }
         };
