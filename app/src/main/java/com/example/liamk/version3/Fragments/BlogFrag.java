@@ -1,5 +1,6 @@
 package com.example.liamk.version3.Fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -7,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +55,7 @@ public class BlogFrag extends Fragment{
 
         dbAuth = FirebaseAuth.getInstance();
         blogDB = FirebaseDatabase.getInstance().getReference().child("Blog");
-        voteDB = FirebaseDatabase.getInstance().getReference().child("Vote");
+        voteDB = FirebaseDatabase.getInstance().getReference().child("Engagement");
         blogDB.keepSynced(true);
         voteDB.keepSynced(true);
 
@@ -128,31 +130,26 @@ public class BlogFrag extends Fragment{
                                     if (registerVote) {
                                         if (dataSnapshot.child(uniquePostID).hasChild(dbAuth.getCurrentUser().getUid())) {
                                             voteDB.child(uniquePostID).child(dbAuth.getCurrentUser().getUid()).removeValue();
+                                            voteDB.child(uniquePostID).child("Likers").child(dbAuth.getCurrentUser().getUid()).removeValue();
+
                                             final Animation unlikeRotate = AnimationUtils.loadAnimation(getActivity(), R.anim.rotatedislike);
                                             viewHolder.postVoteBtn.startAnimation(unlikeRotate);
-                                            if(viewHolder.intVotes > 0)
-                                            {
-                                                viewHolder.intVotes = viewHolder.intVotes -1;
-                                                viewHolder.voteCount.setText(Integer.toString(viewHolder.intVotes));
-                                            }
-                                            Toast.makeText(getActivity(), "-1 Post Support", Toast.LENGTH_SHORT).show();
-                                            registerVote = false;
 
+                                            registerVote = false;
                                         }
                                         else {
                                             String user = dbAuth.getCurrentUser().getEmail().toString();
                                             voteDB.child(uniquePostID).child(dbAuth.getCurrentUser().getUid()).setValue(user);
+                                            voteDB.child(uniquePostID).child("Likers").child(dbAuth.getCurrentUser().getUid()).setValue(user);
+
                                             final Animation likeRotate = AnimationUtils.loadAnimation(getActivity(), R.anim.rotatelike);
                                             final Animation likeZoom = AnimationUtils.loadAnimation(getActivity(), R.anim.zoomlike);
                                             AnimationSet multiLike = new AnimationSet(false);
                                             multiLike.addAnimation(likeRotate);
                                             multiLike.addAnimation(likeZoom);
                                             viewHolder.postVoteBtn.startAnimation(multiLike);
-                                            viewHolder.intVotes = viewHolder.intVotes +1;
-                                            viewHolder.voteCount.setText(Integer.toString(viewHolder.intVotes));
-                                            Toast.makeText(getActivity(), "+1 Post Support", Toast.LENGTH_SHORT).show();
-                                            registerVote = false;
 
+                                            registerVote = false;
                                         }
                                     }
                                 }
@@ -198,11 +195,10 @@ public class BlogFrag extends Fragment{
 
 
             dbAuth = FirebaseAuth.getInstance();
-            dbLike = FirebaseDatabase.getInstance().getReference().child("Vote");
+            dbLike = FirebaseDatabase.getInstance().getReference().child("Engagement");
             dbLike.keepSynced(true);
 
             voteCount = (TextView) mView.findViewById(R.id.voteCount);
-
         }
 
         public void setTitle(String title){
@@ -221,13 +217,20 @@ public class BlogFrag extends Fragment{
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if(dataSnapshot.child(uniquePostID).hasChild(dbAuth.getCurrentUser().getUid())){
                         postVoteBtn.setImageResource(R.mipmap.ic_plus_one_green_24dp);
-                        //intVotes = intVotes +1;
-                       //voteCount.setText(Integer.toString(intVotes));
 
+                        if(dataSnapshot.hasChild(uniquePostID)){
+                            long numOfLikes =dataSnapshot.child(uniquePostID).child("Likers").getChildrenCount();
+                            voteCount.setText(Long.toString(numOfLikes));
+                        }
                     } else {
                         postVoteBtn.setImageResource(R.mipmap.ic_plus_one_black_24dp);
-                        //intVotes = intVotes -1;
-                        //voteCount.setText(Integer.toString(intVotes));
+
+                        if(dataSnapshot.hasChild(uniquePostID)){
+                            long numOfLikes =dataSnapshot.child(uniquePostID).child("Likers").getChildrenCount();
+                            voteCount.setText(Long.toString(numOfLikes));
+                        } else{
+                            voteCount.setText("0");
+                        }
                     }
                 }
 
@@ -237,8 +240,9 @@ public class BlogFrag extends Fragment{
                 }
             });
         }
-
     }
+
+
 
 
 }

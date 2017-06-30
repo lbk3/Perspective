@@ -76,7 +76,6 @@
             android:layout_marginLeft="10dp"/>
 
 
-
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

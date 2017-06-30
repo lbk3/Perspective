@@ -66,7 +66,7 @@ public class BlogPostActivity extends AppCompatActivity {
                     DatabaseReference newPost = blogDB.push();
                     newPost.child("title").setValue(blogTitleContent);
                     newPost.child("desc").setValue(blogDescContent);
-                    newPost.child("user").setValue(dbAuth.getCurrentUser().getEmail());
+                    newPost.child("email").setValue(dbAuth.getCurrentUser().getEmail());
                     postProgress.dismiss();
                     finish();
                 }else{
