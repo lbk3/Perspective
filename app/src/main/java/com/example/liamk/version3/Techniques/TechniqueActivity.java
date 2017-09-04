@@ -24,6 +24,7 @@ public class TechniqueActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.enter_right, R.anim.hold);
         setContentView(R.layout.activity_technique);
         header = (TextView) findViewById(R.id.techTitle);
         information = (TextView) findViewById(R.id.techDescription);
@@ -75,5 +76,11 @@ public class TechniqueActivity extends AppCompatActivity {
             startActivity(new Intent(TechniqueActivity.this, SignIn.class));
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPause() {
+        overridePendingTransition(R.anim.hold, R.anim.exit_right);
+        super.onPause();
     }
 }

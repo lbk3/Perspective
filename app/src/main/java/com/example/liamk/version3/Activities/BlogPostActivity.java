@@ -1,10 +1,8 @@
 package com.example.liamk.version3.Activities;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,13 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 
-import com.example.liamk.version3.Fragments.BlogFrag;
 import com.example.liamk.version3.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.perf.FirebasePerformance;
-import com.google.firebase.perf.metrics.Trace;
 
 public class BlogPostActivity extends AppCompatActivity {
 
@@ -35,6 +30,7 @@ public class BlogPostActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.enter_right, R.anim.hold);
         setContentView(R.layout.activity_blog_post);
 
         postLayout = (RelativeLayout) findViewById(R.id.postLayout);
@@ -73,4 +69,10 @@ public class BlogPostActivity extends AppCompatActivity {
             Snackbar.make(postLayout,"You haven't finished your post yet",Snackbar.LENGTH_SHORT);
         }
         }
+
+    @Override
+    protected void onPause() {
+        overridePendingTransition(R.anim.hold, R.anim.exit_right);
+        super.onPause();
+    }
     }

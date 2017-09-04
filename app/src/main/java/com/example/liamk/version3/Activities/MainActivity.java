@@ -1,30 +1,20 @@
 package com.example.liamk.version3.Activities;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewAnimationUtils;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.liamk.version3.Fragments.BlogFrag;
 import com.example.liamk.version3.Fragments.EventsFrag;
@@ -49,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.enter_right, R.anim.hold);
         setContentView(R.layout.activity_main);
         Fabric.with(this, new Crashlytics());
 
@@ -188,8 +179,14 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onPause() {
+        overridePendingTransition(R.anim.hold, R.anim.exit_right);
+        super.onPause();
+    }
+
     private class CustomerAdapter extends FragmentPagerAdapter {
-        private String fragments [] = {"Events", "Techniques", "Feed", "Links",};
+        private String fragments [] = {"Events", "Feed", "Techniques", "Links",};
         public CustomerAdapter(FragmentManager supportFragmentManager, Context applicationContext) {
             super(supportFragmentManager);
         }
@@ -200,9 +197,9 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
                     return new EventsFrag();
                 case 1:
-                    return new TechFrag();
-                case 2:
                     return new BlogFrag();
+                case 2:
+                    return new TechFrag();
                 case 3:
                     return new LinksFrag();
                 default:

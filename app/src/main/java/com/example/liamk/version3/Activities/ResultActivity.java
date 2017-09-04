@@ -12,6 +12,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.text.method.ScrollingMovementMethod;
@@ -19,7 +20,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.liamk.version3.Adapters.ScheduledEvents;
 import com.example.liamk.version3.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -37,8 +37,6 @@ import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.Events;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -46,14 +44,14 @@ import java.util.List;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
-public class APIActivity extends AppCompatActivity
+public class ResultActivity extends AppCompatActivity
         implements EasyPermissions.PermissionCallbacks {
     GoogleAccountCredential mCredential;
     public TextView mOutputText;
     public TextView apiValues;
     private Button enterApp;
     ProgressDialog mProgress;
-    private Button callAPIBtn;
+    private FloatingActionButton callAPIBtn;
 
     static final int REQUEST_ACCOUNT_PICKER = 1000;
     public static final int REQUEST_AUTHORIZATION = 1001;
@@ -70,11 +68,12 @@ public class APIActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.AppTheme_NoActionBar);
+        overridePendingTransition(R.anim.enter_right, R.anim.hold);
+        setContentView(R.layout.activity_result);
 
-        setContentView(R.layout.activity_api);
 
-
-        callAPIBtn = (Button) findViewById(R.id.callAPIBtn);
+        callAPIBtn = (FloatingActionButton) findViewById(R.id.callAPIBtn);
         callAPIBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,23 +85,23 @@ public class APIActivity extends AppCompatActivity
         });
 
 
-        enterApp = new Button(APIActivity.this);
+        enterApp = new Button(ResultActivity.this);
         enterApp.setVisibility(View.INVISIBLE);
         enterApp.setPadding(0,5,0,0);
         enterApp.setText("Let's Go");
 
-        mOutputText = new TextView(APIActivity.this);
+        mOutputText = new TextView(ResultActivity.this);
         mOutputText.setPadding(16, 16, 16, 16);
         mOutputText.setTextSize(16);
         mOutputText.setMovementMethod(new ScrollingMovementMethod());
 
-        apiValues = new TextView(APIActivity.this);
+        apiValues = new TextView(ResultActivity.this);
         apiValues.setPadding(16, 16, 16, 16);
         apiValues.setTextSize(16);
         apiValues.setVerticalScrollBarEnabled(true);
         apiValues.setMovementMethod(new ScrollingMovementMethod());
 
-        mProgress = new ProgressDialog(APIActivity.this);
+        mProgress = new ProgressDialog(ResultActivity.this);
         mProgress.setMessage("Fetching your events..");
 
         // Initialize credentials and service object.
@@ -145,7 +144,7 @@ public class APIActivity extends AppCompatActivity
     @AfterPermissionGranted(REQUEST_PERMISSION_GET_ACCOUNTS)
     public void chooseAccount() {
         if (EasyPermissions.hasPermissions(
-                APIActivity.this, Manifest.permission.GET_ACCOUNTS)) {
+                ResultActivity.this, Manifest.permission.GET_ACCOUNTS)) {
             String accountName = getPreferences(Context.MODE_PRIVATE)
                     .getString(PREF_ACCOUNT_NAME, null);
             if (accountName != null) {
@@ -160,7 +159,7 @@ public class APIActivity extends AppCompatActivity
         } else {
             // Request the GET_ACCOUNTS permission via a user dialog
             EasyPermissions.requestPermissions(
-                    APIActivity.this,
+                    ResultActivity.this,
                     "This app needs to access your Google account (via Calender).",
                     REQUEST_PERMISSION_GET_ACCOUNTS,
                     Manifest.permission.GET_ACCOUNTS);
@@ -229,7 +228,7 @@ public class APIActivity extends AppCompatActivity
                                            @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         EasyPermissions.onRequestPermissionsResult(
-                requestCode, permissions, grantResults, APIActivity.this);
+                requestCode, permissions, grantResults, ResultActivity.this);
     }
 
     /**
@@ -276,7 +275,7 @@ public class APIActivity extends AppCompatActivity
         GoogleApiAvailability apiAvailability =
                 GoogleApiAvailability.getInstance();
         final int connectionStatusCode =
-                apiAvailability.isGooglePlayServicesAvailable(APIActivity.this);
+                apiAvailability.isGooglePlayServicesAvailable(ResultActivity.this);
         return connectionStatusCode == ConnectionResult.SUCCESS;
     }
 
@@ -288,7 +287,7 @@ public class APIActivity extends AppCompatActivity
         GoogleApiAvailability apiAvailability =
                 GoogleApiAvailability.getInstance();
         final int connectionStatusCode =
-                apiAvailability.isGooglePlayServicesAvailable(APIActivity.this);
+                apiAvailability.isGooglePlayServicesAvailable(ResultActivity.this);
         if (apiAvailability.isUserResolvableError(connectionStatusCode)) {
             showGooglePlayServicesAvailabilityErrorDialog(connectionStatusCode);
         }
@@ -305,7 +304,7 @@ public class APIActivity extends AppCompatActivity
             final int connectionStatusCode) {
         GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
         Dialog dialog = apiAvailability.getErrorDialog(
-                APIActivity.this,
+                ResultActivity.this,
                 connectionStatusCode,
                 REQUEST_GOOGLE_PLAY_SERVICES);
         dialog.show();
@@ -361,9 +360,10 @@ public class APIActivity extends AppCompatActivity
                     .execute();
             List<Event> items = events.getItems();
 
-
             for (Event event : items) {
+                //DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
                 DateTime start = event.getStart().getDateTime();
+                //String formattedDate = dateFormat.format(event.getStart().getDateTime());
                 if (start == null) {
                     // All-day events don't have start times, so just use
                     // the start date.
@@ -393,8 +393,8 @@ public class APIActivity extends AppCompatActivity
                     @Override
                     public void onClick(View view) {
                         String outputStirng = output.toString();
-                        outputStirng = outputStirng.substring(1, outputStirng.length() -1);
-                        Intent intent = new Intent(APIActivity.this, MainActivity.class);
+                        outputStirng = outputStirng.substring(1, outputStirng.length() - 1);
+                        Intent intent = new Intent(ResultActivity.this, MainActivity.class);
                         intent.putExtra("importEvents", " "+ outputStirng);
                         startActivity(intent);
                         finish();
@@ -415,7 +415,7 @@ public class APIActivity extends AppCompatActivity
                 } else if (mLastError instanceof UserRecoverableAuthIOException) {
                     startActivityForResult(
                             ((UserRecoverableAuthIOException) mLastError).getIntent(),
-                            APIActivity.REQUEST_AUTHORIZATION);
+                            ResultActivity.REQUEST_AUTHORIZATION);
                 } else {
                     mOutputText.setText("The following error occurred:\n"
                             + mLastError.getMessage());
@@ -424,5 +424,5 @@ public class APIActivity extends AppCompatActivity
                 mOutputText.setText("Request cancelled.");
             }
         }
-        }
     }
+}

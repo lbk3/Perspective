@@ -77,6 +77,9 @@ public class BlogFrag extends Fragment{
         mLayoutManager.setReverseLayout(true);
         mLayoutManager.setStackFromEnd(true);
         blogRV.setLayoutManager(mLayoutManager);
+        if (mLayoutManager.getItemCount() != 0) {
+            getActivity().findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+        }
 
         myFab = (FloatingActionButton) blogview.findViewById(R.id.blogfab);
         myFab.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +90,6 @@ public class BlogFrag extends Fragment{
         });
 
 
-
         return blogview;
     }
 
@@ -95,7 +97,7 @@ public class BlogFrag extends Fragment{
     public void onStart() {
         super.onStart();
 
-        FirebaseRecyclerAdapter<Blog, BlogViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Blog, BlogViewHolder>(
+        final FirebaseRecyclerAdapter<Blog, BlogViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Blog, BlogViewHolder>(
                 Blog.class,
                 R.layout.blogcard,
                 BlogViewHolder.class,
@@ -183,7 +185,6 @@ public class BlogFrag extends Fragment{
         DatabaseReference dbLike;
         FirebaseAuth dbAuth;
         ImageButton postCommentBtn;
-        int intVotes = 0;
         TextView voteCount;
 
         public BlogViewHolder(View itemView) {

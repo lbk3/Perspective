@@ -54,7 +54,7 @@ public class SignIn extends AppCompatActivity {
                 if(firebaseAuth.getCurrentUser() !=null){
                     signInProgress.show();
                     signInProgress.dismiss();
-                    startActivity(new Intent(SignIn.this, APIActivity.class));
+                    startActivity(new Intent(SignIn.this, ResultActivity.class));
                     /*Intent intent = new Intent(SignIn.this, PostInteractionActivity.class);
                     intent.putExtra("importAccount", uniquePostID);
                     startActivity(intent);*/
