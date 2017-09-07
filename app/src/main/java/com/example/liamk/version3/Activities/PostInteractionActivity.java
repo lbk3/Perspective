@@ -5,6 +5,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -26,6 +27,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 public class PostInteractionActivity extends AppCompatActivity {
 
@@ -44,6 +46,7 @@ public class PostInteractionActivity extends AppCompatActivity {
 
     private ProgressDialog commentProgress;
     private LinearLayout commentLayout;
+    //private String[] arrayData = {"comment 1", "comment 2", "comment 3", "comment 4", "comment 5", "comment 6", };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +75,10 @@ public class PostInteractionActivity extends AppCompatActivity {
         commentProgress = new ProgressDialog(this);
         commentLayout = (LinearLayout) findViewById(R.id.commentLayout);
 
+        //ArrayAdapter adapter = new ArrayAdapter(this, R.layout.custom_row, R.id.rowText, arrayData);
+        //ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayData);
+        //commentList.setAdapter(adapter);
+
         blogDB.child(postID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -87,6 +94,27 @@ public class PostInteractionActivity extends AppCompatActivity {
 
             }
         });
+
+
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference engagementRef = rootRef.child("Engagement").child("-Kne46iBe6ooNFKTv_8w").child("Comments");
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                    String value = ds.getValue(String.class);
+                    Log.d("TAG", value + ", ");
+                    List<String> myList = new ArrayList<String>(Arrays.asList(value.split(",")));
+                    ArrayAdapter adapter = new ArrayAdapter(PostInteractionActivity.this, android.R.layout.simple_list_item_1, myList);
+                    commentList.setAdapter(adapter);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        };
+        engagementRef.addListenerForSingleValueEvent(eventListener);
+
 
         commentDB.addValueEventListener(new ValueEventListener() {
             @Override
@@ -108,26 +136,14 @@ public class PostInteractionActivity extends AppCompatActivity {
         sendComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                commitPost();
-                finish();
-                //commentText.getText().clear();
-                //commentText.clearFocus();
-            }
-        });
+                final String commentInput = commentText.getText().toString().trim();
+                if(commentInput.isEmpty())
+                {
+                    Snackbar.make(view,"There's nothing to share",Snackbar.LENGTH_SHORT).show();
 
-        commentDB.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.hasChild(postID)) {
-                    String comment = (String) dataSnapshot.child("Comments").getValue();
-
-                    List<String> myList = new ArrayList<String>(Arrays.asList(comment));
-                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.custom_row, R.id.rowText, myList);
+                } else{
+                    commitPost();
                 }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
 
             }
         });
@@ -135,34 +151,14 @@ public class PostInteractionActivity extends AppCompatActivity {
     }
 
     private void commitPost() {
+        final String commentInput = commentText.getText().toString().trim();
         commentProgress.setMessage("Posting");
         commentProgress.show();
-        final String commentInput = commentText.getText().toString().trim();
 
-        if(TextUtils.isEmpty(commentInput)){
-            Snackbar.make(commentLayout,"You haven't finished your post yet",Snackbar.LENGTH_SHORT);
-        }else{
-
-            commentDB.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    String user = dbAuth.getCurrentUser().getEmail().toString();
-                    commentDB.child(postID).child("Comments").child("comment").setValue(commentInput);
-                    //commentDB.child(postID).child("Comments").child("email").setValue(user);
-                    commentProgress.dismiss();
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-
-            //DatabaseReference newPost = commentDB.push();
-            //newPost.child(postID).child("Comments").child("comment").setValue(commentInput);
-            //newPost.child(postID).child("Comments").child("email").setValue(dbAuth.getCurrentUser().getEmail());
-            //commentProgress.dismiss();
-        }
+        String uniqueId = UUID.randomUUID().toString();
+        commentDB.child(postID).child("Comments").child(uniqueId).setValue(commentInput);
+        commentProgress.dismiss();
+        finish();
     }
 
     @Override
