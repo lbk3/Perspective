@@ -1,3 +1,6 @@
+### Perspective ###
+This repo contains my BEng Software Engineering honours project completed on May 2017 at Edinburgh Napier University.
+
 <details>
 <summary>The Application</summary>
 A mobile application that I have developed for my honours project as part of my BEng Software Engineering degree at Edinburgh Napier University.
